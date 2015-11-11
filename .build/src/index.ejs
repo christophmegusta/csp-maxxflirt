@@ -1,0 +1,74 @@
+<%
+pageClass = "home"
+%>
+<% include ejs/include/header.ejs %>
+
+<section class="form-box pin-right">
+    <p class="text-right">Step 1/1</p>
+    <h2 class="label-offset">Register for free</h2>
+    <form action=""
+        class="custom-form" 
+        role="form" 
+        id="userRegisterForm" 
+        method="post" 
+        accept-charset="utf-8">
+        <div class="form-group" id="emailGroup">
+            <label for="inputEmail" class="form-label">Email:</label>
+            <input name="inputEmail"
+                class="form-control" 
+                id="inputEmail"
+                data-success="0" 
+                data-field="email" 
+                type="email" 
+                value="" 
+                onkeyup="this.setAttribute('value', this.value);"
+                required="required">
+        </div>
+        <div class="form-group" id="usernameGroup">
+            <label for="inputUsername" class="form-label">Username:</label>
+            <input name="inputUsername"
+                class="form-control" 
+                id="inputUsername"
+                data-success="0" 
+                data-field="username" 
+                type="text" 
+                value="" 
+                onkeyup="this.setAttribute('value', this.value);"
+                required="required">
+        </div>
+        <div class="form-group" id="passwordGroup">
+            <label for="inputPassword" class="form-label">Password:</label>
+            <input name="inputPassword"
+                class="form-control" 
+                id="inputPassword"
+                data-success="0" 
+                data-field="password" 
+                type="password" 
+                value="" 
+                onkeyup="this.setAttribute('value', this.value);"
+                required="required">
+        </div>
+
+        <div class="form-group form-checkbox label-offset">
+            <label>
+                <input type="checkbox" name="data[User][agree]" checked="checked" value="1" id="UserAgree">
+                I am over 18+ years old and have read and agreed to the 
+                <a href="terms.html" target="_blank" title="Terms and conditions">Terms and conditions</a>
+                and 
+                <a href="privacy.html" target="_blank" title="Privacy policy">Privacy policy</a>
+                .
+            </label>
+        </div>
+        <div class="form-group form-submit label-offset">
+            <button class="btn btn-primary btn-lg">
+            Let's <strong>GO</strong>!
+            </button>
+        </div>
+        <p class="form-helper-text label-offset">
+            Have an account?  <a href="login.html" title="Login now!">Login now!</a>
+        </p>
+    </form>
+
+</section>
+
+<% include ejs/include/footer.ejs %>

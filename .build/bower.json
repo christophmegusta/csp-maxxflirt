@@ -1,0 +1,7 @@
+{
+  "name": "csp-scaffold",
+  "devDependencies": {},
+  "dependencies": {
+    "flag-icon-css": "~0.8.4"
+  }
+}

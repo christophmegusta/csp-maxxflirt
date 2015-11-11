@@ -1,0 +1,28 @@
+<%
+pageClass = "home"
+%>
+<% include ejs/include/header.ejs %>
+
+<section class="form-box">
+    <h2 class="label-offset">Forgot your password?</h2>
+    <form action="" role="form" id="restoreForm" method="post" accept-charset="utf-8">
+        <div class="form-group" id="emailGroup">
+            <label for="inputEmail" class="form-label">Username / Email:</label>
+            <input name="inputEmail" class="form-control" id="inputEmail" data-success="0" data-field="email" type="text" required="required">
+        </div>
+        <div class="form-group form-submit label-offset">
+            <button class="btn btn-primary btn-lg">Send Mail</button>
+        </div>
+        <p class="form-helper-text label-offset">
+            Don't have an account? <a href="index.html" title="Register for FREE!">Register for FREE!</a>
+        </p>
+    </form>
+    <div id="success-message">
+        <p>Please check your mailbox, we've sent you a new password</p>
+        <p>
+            Navigate to <a href="login.html">Login page</a>
+        </p>
+    </div>
+</section>
+
+<% include ejs/include/footer.ejs %>

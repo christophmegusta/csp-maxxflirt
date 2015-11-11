@@ -1,0 +1,128 @@
+$label-width: 145px;
+$input-width: 270px;
+$content-gap: 30px;
+$header-height: 50px;
+$footer-height: 80px;
+
+$color-text: #f3f3f3;
+$color-primary: #7BBCFF;
+$color-link: $color-primary;
+
+@import "fonts";
+@import "normalize";
+@import "helpers";
+@import "forms";
+@import "flags/flag-icon";
+
+// Sticky footer
+html, body {
+  height: 100%;
+}
+.page-wrap {
+  min-height: 100%;
+  position:relative;
+  margin-bottom: -$footer-height; 
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+.page-footer, .page-wrap:after {
+  height: $footer-height; 
+}
+
+/* Main Lyout */
+body {
+    background: #fff;
+    text-align: center;
+    &.home {
+        background: #fff url('../images/background.jpg') center center no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+}
+
+.page-header,
+.page-footer {
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    text-align: left;
+}
+.page-header {
+    min-height: $header-height;
+    top: 0;
+    padding: 15px $content-gap;
+}
+.page-footer {
+    padding: 0 $content-gap;
+    text-align:left;
+}
+a.chat-brand {
+    text-decoration: none;
+    color: #fff;
+    line-height: $header-height;
+}
+.text-content {
+    text-align: left;
+    color: #444;
+    font-size: 14px;
+    padding: 20px 40px;
+}
+
+/*   Page footer   */
+.footer-links {
+    width: 40%;
+    li { float: left;}
+}
+.page-footer {
+    position: relative;
+    font-size: 14px;
+    color: darken($color-text, 8%);
+    a  {
+        color: darken($color-text, 8%);
+        text-decoration: none;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+}
+.links-i18n,
+.links-pages {
+    li {
+        margin-right: 15px;
+        line-height: $footer-height/2;
+    }
+}
+.links-i18n {
+    border-top: 1px solid darken($color-text, 15%);
+}
+.flag-icon {
+    width: 1em;
+}
+ul.certificates {
+    margin-left: 30ex;
+    li {
+        background-image: url("../images/footer-badge@2x.png");
+        background-size: 180px 61px;
+        display: inline-block;
+        margin: 10px 5px 0;
+        height: 61px;
+        width: 60px;
+        &.certificate-1 {
+            background-position: 0 0;
+        }
+        &.certificate-2 {
+            background-position: -60px 0;
+        }
+        &.certificate-3 {
+            background-position: -120px 0;
+        }
+    }
+}
+.copyright {
+    font-size: 12px;
+    line-height: $footer-height;
+    margin: 0;
+}

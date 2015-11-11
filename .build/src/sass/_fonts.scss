@@ -1,0 +1,28 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+/*  Typography */
+body {
+    color: $color-text;
+}
+h1, h2, h3, h4 {
+    color:$color-primary;
+} 
+a {
+    color:$color-link;
+}
+a:hover {
+    color:lighten($color-link, 7%);
+}
+a:visited {
+    color:darken($color-link, 5%);
+}
+h1, h2, h3, h4, p {
+    margin: 0 0 15px;
+}
+h2 {
+    text-transform: uppercase;
+}

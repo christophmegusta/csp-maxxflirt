@@ -1,0 +1,100 @@
+/* Forms */
+.form-box {
+    background: rgba(0,0,0,0.7);
+    border-radius: 6px;
+    padding:30px 25px 20px;
+    margin: 0 auto;
+    text-align: left;
+    width: $label-width + $input-width + 50;
+    font-size: 15px;
+    /* vertical alligning */
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 50%;
+    margin-left: -(($label-width + $input-width + 50)/2);
+    &.pin-right { 
+        left: auto;
+        right: $content-gap;
+        margin-left: 0;
+    }
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+.form-label, .form-control {
+    display: inline-block;
+}
+.form-label {
+    float: left;
+    width: $label-width;
+    height: 40px;
+    line-height: 40px;
+    text-align: right;
+    padding-right: 10px;
+}
+.field-error,
+.label-offset {
+    padding-left: $label-width;
+}
+.field-error {
+    font-size: 12px;
+    color: red;
+}
+.form-control {
+    height: 40px;
+    line-height: 30px;
+    padding: 0 12px;
+    color:#333;
+}
+.form-control:focus {
+    outline: 0;
+}
+.form-checkbox {
+    font-size: 12px;
+    line-height: 1.66;
+    padding-left: $label-width;
+}
+.form-checkbox input {
+    float:left;
+    margin: 3px 0 0 -20px;
+}
+.form-control,
+.form-submit .btn {
+    width: $input-width;
+}
+.form-helper-text {
+    font-size: 14px;
+}
+
+//
+// Hide 'Thanks' message
+//
+#success-message {
+    display: none;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+}
+.btn-lg {
+    font-size: 22px;
+    padding:10px 20px;
+}
+.btn-primary {
+    background-image: linear-gradient(to bottom, #1090bf 0%, #0d6f92 100%);
+    background-repeat: repeat-x;
+    border-color: #0d6f92;
+}
