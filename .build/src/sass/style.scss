@@ -9,10 +9,16 @@ $color-primary: #7BBCFF;
 $color-link: $color-primary;
 
 @import "fonts";
-@import "normalize";
 @import "helpers";
 @import "forms";
 @import "flags/flag-icon";
+
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+}
 
 // Sticky footer
 html, body {
@@ -31,7 +37,7 @@ html, body {
   height: $footer-height; 
 }
 
-/* Main Lyout */
+/* Main Layout */
 body {
     background: #fff;
     text-align: center;
@@ -69,7 +75,9 @@ a.chat-brand {
     padding: 20px 40px;
 }
 
-/*   Page footer   */
+/*
+/*   Page footer   
+*/
 .footer-links {
     width: 40%;
     li { float: left;}
@@ -98,9 +106,6 @@ a.chat-brand {
 .links-i18n {
     border-top: 1px solid darken($color-text, 15%);
 }
-.flag-icon {
-    width: 1em;
-}
 ul.certificates {
     margin-left: 30ex;
     li {
@@ -125,4 +130,7 @@ ul.certificates {
     font-size: 12px;
     line-height: $footer-height;
     margin: 0;
+}
+.flag-icon {
+    width: 1em;
 }

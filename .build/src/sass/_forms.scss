@@ -20,6 +20,10 @@
         right: $content-gap;
         margin-left: 0;
     }
+    input {
+        font-size: inherit;
+        font-family: inherit;
+    }
 }
 
 .form-group {
@@ -97,4 +101,5 @@
     background-image: linear-gradient(to bottom, #1090bf 0%, #0d6f92 100%);
     background-repeat: repeat-x;
     border-color: #0d6f92;
+    color: $color-text;
 }
