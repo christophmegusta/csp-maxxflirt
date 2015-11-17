@@ -146,14 +146,37 @@ $(document).ready(function() {
 		Register New User form
 	*/
 	$('#userRegisterForm').submit(function(event) {
+		
 		// Cleaning form fields from error messages
 		cleanFields();
+
+		var newEmail = $('#inputEmail').val()
+		var newUser = $('#inputUsername').val()
+		var newPassword = $('#inputPassword').val()
 		
+		if (newEmail === '') {
+			$('#emailGroup').addClass('has-error');
+			$('#emailGroup').append("<div class='field-error'>Vallue can't be empty</div>");
+			return false
+		}
+
+		if (newUser === '') {
+			$('#usernameGroup').addClass('has-error');
+			$('#usernameGroup').append("<div class='field-error'>Vallue can't be empty</div>");
+			return false
+		}
+
+		if (newPassword === '') {
+			$('#passwordGroup').addClass('has-error');
+			$('#passwordGroup').append("<div class='field-error'>Vallue can't be empty</div>");
+			return false
+		}
+
 		// Adding fields data to the request object
 		cspRequest.data = {
-			email: $('#inputEmail').val(),
-			username: $('#inputUsername').val(),
-			password: $('#inputPassword').val(),
+			email:  newEmail,
+			username:  newUser,
+			password:  newPassword,
 			domainName: domainName
 		};
 		cspRequest.url = currentStage + "/end/user/create";
@@ -212,10 +235,25 @@ $(document).ready(function() {
 		// Cleaning form fields from error messages
 		cleanFields();
 		
+		var nameOrEmail = $('#inputEmail').val()
+		var password = $('#inputPassword').val()
+		
+		if (newEmail === '') {
+			$('#emailGroup').addClass('has-error');
+			$('#emailGroup').append("<div class='field-error'>Vallue can't be empty</div>");
+			return false
+		}
+
+		if (newPassword === '') {
+			$('#passwordGroup').addClass('has-error');
+			$('#passwordGroup').append("<div class='field-error'>Vallue can't be empty</div>");
+			return false
+		}
+
 		// Adding fields data to the request object
 		cspRequest.data = {
-			nameOrEmail: $('#inputEmail').val(),
-			password: $('#inputPassword').val(),
+			nameOrEmail: nameOrEmail,
+			password: password,
 			domain: domainName,
 			validTo: validTo
 		};
@@ -261,12 +299,20 @@ $(document).ready(function() {
 		// Cleaning form fields from error messages
 		cleanFields();
 		
+		var restoreEmail = $('#inputEmail').val()
+		
+		if (restoreEmail === '') {
+			$('#emailGroup').addClass('has-error');
+			$('#emailGroup').append("<div class='field-error'>Vallue can't be empty</div>");
+			return false
+		}
+
 		// Adding fields data to the request object
 		cspRequest.data = {
-			nameOrEmail: $('#inputEmail').val(),
+			nameOrEmail: restoreEmail,
 			domain: domainName
 		};
-		cspRequest.url = currentStage + "/lost/password";
+		cspRequest.url = currentStage + "/account/lost/password";
 
 		// Sending form data to the server
 		$.ajax(cspRequest).done(function(response) {
