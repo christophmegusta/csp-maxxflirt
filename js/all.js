@@ -4,12 +4,12 @@
 
 // DEV
 /*
-var brev = 'a61305e';
+var brev = '292205a';
 var currentStage = "http://" + brev + ".stage.backend.megusta.dating/g-db-layer-0.1";
 var domainName = 'developer-chat.latest.frontend.megusta.dating';
 */
-
 // PRODUCTION
+
 var currentStage = 'http://82.220.91.232:3000/backend-production/g-db-layer-0.1'
 var domainName = window.location.host
 
@@ -72,9 +72,15 @@ var navigateToChat = function(data) {
 	
 	localStorage.removeItem(paramsKey);
 	
-	document.cookie = 'shallpass=yes; expires=Thu, 18 Dec 2018 12:00:00 UTC; path=/';
-	document.cookie = "chat.currentUser.session.id=" + data.sessionHash + "; expires=Thu, 18 Dec 2018 12:00:00 UTC; path=/";
-	document.cookie = "chat.currentUser.domainName=" + domainName + "; expires=Thu, 18 Dec 2018 12:00:00 UTC; path=/";
+	if (data.session != null) {
+		document.cookie = "shallpass=yes; expires=" + data.session.expires+ "; path=/";
+		document.cookie = "chat.currentUser.session.id=" + data.session.sessionHash + "; expires=" + data.session.expires+ "; path=/";
+		document.cookie = "chat.currentUser.domainName=" + domainName + "; expires=" + data.session.expires+ "; path=/";
+	} else {
+		document.cookie = 'shallpass=yes; expires=Thu, 18 Dec 2018 12:00:00 UTC; path=/';
+		document.cookie = "chat.currentUser.session.id=" + data.sessionHash + "; expires=Thu, 18 Dec 2018 12:00:00 UTC; path=/";
+		document.cookie = "chat.currentUser.domainName=" + domainName + "; expires=Thu, 18 Dec 2018 12:00:00 UTC; path=/";
+	}
 	if (navigateParams != null) {
 		var query = QueryString(navigateParams);
 		window.location.href = query.q + "?" + navigateParams;
@@ -92,9 +98,49 @@ var cleanFields = function() {
 };
 
 /*
+@	Checking if redirected from activation email
+*/
+var checkActivation = function() {
+	var currentParams = QueryString(currentURL);
+	if (currentParams.securityToken != null) {
+		
+		// Adding fields data to the request object
+		cspRequest.data = {
+			securityToken: currentParams.securityToken
+		};
+		cspRequest.url = currentStage + "/account/activate";
+
+		// Sending form data to the server
+		$.ajax(cspRequest).done(function(response) {
+			// ERROR response
+			// Handling errors from server
+			if (response.status !== 'SUCCESS') {
+				if (response.globalErrors != null) {
+					$('#userRegisterForm').fadeOut();
+					$('.form-box').append("<div class='field-error'>" + response.globalErrors[0].message + "</div>");
+				}
+			} else {
+				// SUCCESS
+				// Redirecting to chat application
+				navigateToChat(response.data);
+				return 
+			}
+		// Handling AJAX errors, rare case	
+		}).fail(function(data) {
+			return console.error(data);
+		});
+
+	}
+};
+
+
+/*
 @	Forms handling and initialization
 */
 $(document).ready(function() {
+
+	// Check for activation 'securityToken'
+	checkActivation();
 
 	/*
 		Register New User form
@@ -133,37 +179,23 @@ $(document).ready(function() {
 					// password doesn't meet requirements
 					if (response.fieldErrors.password != null) {
 						$('#passwordGroup').addClass('has-error');
-						return $('#passwordGroup').append("<div class='field-error'>" + response.fieldErrors.password[0].message + "</div>");
+						$('#passwordGroup').append("<div class='field-error'>" + response.fieldErrors.password[0].message + "</div>");
 					}
 					// Handling 'already registered email' error
 				} else if (response.globalErrors != null) {
 					$('#emailGroup').addClass('has-error');
-					return $('#emailGroup').append("<div class='field-error'>" + response.globalErrors[0].message + "</div>");
+					$('#emailGroup').append("<div class='field-error'>" + response.globalErrors[0].message + "</div>");
 				} else {
 					// All other errors
-					return $('#userRegisterForm').append("<div class='field-error'>Something went wrong, please try again later</div>");
+					$('#userRegisterForm').append("<div class='field-error'>Something went wrong, please try again later</div>");
 				}
 			} else {
-				// SUCCESS response
-				// New User registered successfully
-				// We need to login automatically:
-				// credentials are taken from 'userRegisterForm'
-				cspRequest.data = {
-					nameOrEmail: $('#inputUsername').val(),
-					password: $('#inputPassword').val(),
-					domain: domainName,
-					validTo: validTo
-				};
-				cspRequest.url = currentStage + "/account/login";
-
-				// Sending login data
-				$.ajax(cspRequest).done(function(response) {
-					// Redirecting to chat application
-					navigateToChat(response.data);
-				// Handling AJAX errors, rare case
-				}).fail(function(data) {
-					return console.error(data);
-				});
+				// SUCCESS
+				// Hiding form and showing 'success message'
+				// with the link to 'Login' page
+				$('#userRegisterForm').fadeOut();
+				$('#success-message').fadeIn();
+				return 
 			}
 		}).fail(function(data) {
 			return console.error(data);
@@ -251,14 +283,15 @@ $(document).ready(function() {
 					}
 					return results;
 				} else {
-					return $('#emailGroup').append("<div class='field-error'>Something went wrong, please try again later</div>");
+					$('#emailGroup').append("<div class='field-error'>Something went wrong, please try again later</div>");
 				}
 			} else {
 				// SUCCESS
 				// Hiding form and showing 'success message'
 				// with the link to 'Login' page
 				$('#restoreForm').fadeOut();
-				return $('#success-message').fadeIn();
+				$('#success-message').fadeIn();
+				return 
 			}
 		// Handling AJAX errors, rare case	
 		}).fail(function(data) {
@@ -271,10 +304,13 @@ $(document).ready(function() {
 
 	// Checking if URL params was previously saved
 	// If not they will be defined from current URL
+	// If visitor comes from email activation link - 
+	// activation request is sending immediately after parsing token at checkActivation()
 	if (!storedURL && currentURL.length > 0) {
 		localStorage.setItem(paramsKey, currentURL);
 	}
 
 	// Generating current year in the footer area
 	$('#copyright-year').html(new Date().getFullYear());
+
 });
