@@ -3,16 +3,16 @@
 */
 
 // DEV
-/*
+
 var brev = '292205a';
 var currentStage = "http://" + brev + ".stage.backend.megusta.dating/g-db-layer-0.1";
 var domainName = 'developer-chat.latest.frontend.megusta.dating';
-*/
-// PRODUCTION
 
+// PRODUCTION
+/*
 var currentStage = 'http://82.220.91.232:3000/backend-production/g-db-layer-0.1'
 var domainName = window.location.host
-
+*/
 
 /*
 @	Saving URL params to localStorage
@@ -238,13 +238,13 @@ $(document).ready(function() {
 		var nameOrEmail = $('#inputEmail').val()
 		var password = $('#inputPassword').val()
 		
-		if (newEmail === '') {
+		if (nameOrEmail === '') {
 			$('#emailGroup').addClass('has-error');
 			$('#emailGroup').append("<div class='field-error'>Vallue can't be empty</div>");
 			return false
 		}
 
-		if (newPassword === '') {
+		if (password === '') {
 			$('#passwordGroup').addClass('has-error');
 			$('#passwordGroup').append("<div class='field-error'>Vallue can't be empty</div>");
 			return false
