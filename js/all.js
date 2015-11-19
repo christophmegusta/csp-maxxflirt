@@ -3,16 +3,16 @@
 */
 
 // DEV
-
+/*
 var brev = '292205a';
 var currentStage = "http://" + brev + ".stage.backend.megusta.dating/g-db-layer-0.1";
 var domainName = 'developer-chat.latest.frontend.megusta.dating';
-
+*/
 // PRODUCTION
-/*
+
 var currentStage = 'http://82.220.91.232:3000/backend-production/g-db-layer-0.1'
 var domainName = window.location.host
-*/
+
 
 /*
 @	Saving URL params to localStorage
