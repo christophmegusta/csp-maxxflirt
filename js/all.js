@@ -9,7 +9,7 @@ var currentStage = "http://" + brev + ".stage.backend.megusta.dating/g-db-layer-
 var domainName = 'developer-chat.latest.frontend.megusta.dating';
 */
 // PRODUCTION
-var currentStage = 'http://5.79.69.70:3000/backend-production/g-db-layer-0.1/'
+var currentStage = 'http://5.79.69.70:3000/backend-production/g-db-layer-0.1'
 var domainName = window.location.host
 
 
