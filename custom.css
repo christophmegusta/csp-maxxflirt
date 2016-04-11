@@ -35,32 +35,14 @@ body.app-is-loading {
     display: inline-block;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-    border: 3px solid #aaa;
-    animation: chat-loader-spinner 1.2s linear infinite;
-    -webkit-animation: chat-loader-spinner 1.2s linear infinite;
+    background: transparent url('images/loading.svg') 50% 50% no-repeat;
+    background-size: 50px 50px;
 }
-
-@keyframes chat-loader-spinner {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-@-webkit-keyframes chat-loader-spinner {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 .chat-loader .chat-loader-animation {
     position: relative;
+}
+.chat-loader-spinner {
+    fill: #f00;
 }
 
 .chat-loader .chat-loader-animation:before,
